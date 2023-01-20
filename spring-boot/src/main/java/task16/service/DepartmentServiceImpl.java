@@ -42,12 +42,12 @@ public class DepartmentServiceImpl implements DepartmentService {
 
         Person person = personRepository.findById(idP).orElseThrow(() ->
                 new PersonDepartmentException(PersonDepartmentExceptionEnum
-                        .PERSON_OR_DEPARTMENT_NOT_FOUND.getMessage()));
+                        .PERSON_NOT_FOUND.getMessage()));
 
 
         Department department = departmentRepository.findById(idDep)
                 .orElseThrow(() -> new PersonDepartmentException(PersonDepartmentExceptionEnum
-                        .PERSON_OR_DEPARTMENT_NOT_FOUND.getMessage()));
+                        .DEPARTMENT_NOT_FOUND.getMessage()));
 
         person.setDepartment(department);
         departmentRepository.save(department);
@@ -59,7 +59,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     public void deletePerson(Long id) {
         Person person = personRepository.findById(id).orElseThrow(() ->
                 new PersonDepartmentException(PersonDepartmentExceptionEnum
-                        .PERSON_OR_DEPARTMENT_NOT_FOUND.getMessage()));
+                        .PERSON_NOT_FOUND.getMessage()));
 
         personRepository.delete(person);
     }
@@ -67,14 +67,14 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public void deleteDepartment(Long id) {
         Department dep = departmentRepository.findById(id).orElseThrow(() -> new PersonDepartmentException
-                (PersonDepartmentExceptionEnum.PERSON_OR_DEPARTMENT_NOT_FOUND.getMessage()));
+                (PersonDepartmentExceptionEnum.DEPARTMENT_NOT_FOUND.getMessage()));
         departmentRepository.delete(dep);
     }
 
     @Override
     public DepartmentDto getDepartmentDto(Long id) {
         Department dep = departmentRepository.findById(id).orElseThrow(() -> new PersonDepartmentException
-                (PersonDepartmentExceptionEnum.PERSON_OR_DEPARTMENT_NOT_FOUND.getMessage()));
+                (PersonDepartmentExceptionEnum.DEPARTMENT_NOT_FOUND.getMessage()));
         return departmentConverter.departmentToDto(dep);
     }
 
@@ -82,6 +82,6 @@ public class DepartmentServiceImpl implements DepartmentService {
     public Department getDepartment(long id) {
         return departmentRepository.findById(id)
                 .orElseThrow(() -> new PersonDepartmentException(PersonDepartmentExceptionEnum
-                        .PERSON_OR_DEPARTMENT_NOT_FOUND.getMessage()));
+                        .DEPARTMENT_NOT_FOUND.getMessage()));
     }
 }

@@ -26,8 +26,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="5d63ff49-c17c-4391-9181-d4821f5821fc">
-        <schema name="person" object-types="table, view, procedure, function" />
-        <schema name="springnew" object-types="table, view, procedure, function" />
+        <schema name="person-test" object-types="table, view, procedure, function, constraint, index, column, dataset trigger" />
       </connection>
     </loaded-nodes>
   </component>
@@ -55,11 +54,23 @@ FOREIGN KEY (department_id) REFERENCES department_person (department_id) ON DELE
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="5d63ff49-c17c-4391-9181-d4821f5821fc" />
   </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="5d63ff49-c17c-4391-9181-d4821f5821fc" dataset="person-test.address_consolidation_of_skills" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="5d63ff49-c17c-4391-9181-d4821f5821fc" dataset="person-test.order_consolidation_of_skills" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="5d63ff49-c17c-4391-9181-d4821f5821fc" dataset="person-test.clients_consolidation_of_skills" active-filter-id="EMPTY_FILTER">
+      <filter id="17d8b8d2-79ff-4608-9a7a-674a43c7b28a" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="client_id" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
+  </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
+  </component>
+  <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/spring-boot/src/test/resources/create-client-address-order-before.sql" connection-id="5d63ff49-c17c-4391-9181-d4821f5821fc" session-id="MAIN" current-schema="person-test" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />

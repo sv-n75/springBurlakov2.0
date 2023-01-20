@@ -17,8 +17,8 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     List<Person> findAll();
 
     @Query(
-            value = "SELECT * FROM personinformation  p WHERE p.age > 10",
+            value = "SELECT * FROM person_passport_department  p WHERE p.year >?1",
             nativeQuery = true)
-    List<Person> findMoreThan();
+    List<Person> findMoreThan(Integer n);
 
 }

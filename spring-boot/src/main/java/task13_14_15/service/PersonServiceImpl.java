@@ -9,7 +9,6 @@ import task13_14_15.repository.PersonRepository;
 import task13_14_15.service.converter.PersonConverter;
 import task13_14_15.service.dto.PersonDto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static task13_14_15.exception.PersonExceptionEnum.PERSON_NOT_FOUND;
@@ -22,20 +21,17 @@ public class PersonServiceImpl implements PersonService {
     private final PersonRepository personRepository;
     private final PersonConverter personConverter;
 
-    List<Person> personList = new ArrayList<>();
-
     @Override
     public Person getPersonByNameAndAge(String name, Integer age) {
-        Person p = personRepository.findFirstByNameAndAge(name, age);
-        if (p == null) throw new PersonException(PERSON_NOT_FOUND.getMessage());
-        return personRepository.findFirstByNameAndAge(name, age);
+
+        return personRepository.findFirstByNameAndAge(name, age)
+                .orElseThrow(()-> new PersonException(PERSON_NOT_FOUND.getMessage()));
     }
 
     @Override
     public PersonDto getPersonDtoNameAge(String name, Integer age) {
-        Person person = personRepository.findFirstByNameAndAge(name, age);
-        if (person == null) throw new PersonException(PERSON_NOT_FOUND.getMessage());
-        return personConverter.convertToDto(person);
+        return personConverter.convertToDto(personRepository.findFirstByNameAndAge(name, age)
+                .orElseThrow(()-> new PersonException(PERSON_NOT_FOUND.getMessage())));
     }
 
     @Override
@@ -48,24 +44,27 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<PersonDto> getPersons() {
+
         return personConverter.convertToDtList(personRepository.findAll());
     }
 
 
     @Override
     public void addPerson(Person person) {
-        personList.add(person);
         personRepository.save(person);
     }
 
     @Override
     public void addPersons(List<Person> personList) {
-        personList.addAll(personList);
         personRepository.saveAll(personList);
     }
 
     @Override
-    public List<Person> moreThan() {
-        return null;
+    public List<PersonDto> moreThan( Integer n) {
+        List<Person>personList = personRepository.findMoreThan(n);
+        if (personList.isEmpty()) {
+            throw new PersonException(PERSON_NOT_FOUND.getMessage());
+        }
+        return personConverter.convertToDtList(personList);
     }
 }

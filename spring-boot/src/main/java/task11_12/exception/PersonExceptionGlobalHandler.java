@@ -10,12 +10,13 @@ public class PersonExceptionGlobalHandler {
 
     @ExceptionHandler(value = {PersonException.class})
     public ResponseEntity<Object> handlerRequest(PersonException e) {
-        return new ResponseEntity<>(PersonExceptionEnum.PERSON_NOT_FOUND.getMessage(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
+
 
     @ExceptionHandler(value = {Exception.class})
     public ResponseEntity<Object> handlerRequest(Exception e) {
-        return new ResponseEntity<>(PersonExceptionEnum.BAD_REQUEST.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "person")
+@RequestMapping(path = "person/")
 public class PersonController {
 
     private final PersonService personService;
@@ -19,7 +19,7 @@ public class PersonController {
         return personService.getPersonByNameAndYear(name, age);
     }
 
-    @GetMapping("/persons")
+    @GetMapping("persons")
     public List<Person> getPersons(){
         return personService.getPersons();
     }

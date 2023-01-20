@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "person")
+@RequestMapping(path = "person/")
 public class PersonController {
 
    private final PersonService personService;
@@ -19,7 +19,7 @@ public class PersonController {
    private final PersonConverter personConverter;
 
 
-   @GetMapping("/persons")
+   @GetMapping("persons")
    public List<Person> getPersons(){
        return personService.getPersons();
    }
@@ -29,9 +29,9 @@ public class PersonController {
        return personConverter.personToPersonDto(personService.getPersonByNameAndAge(name, age));
    }
 
-   @GetMapping("/more")
-   public List<PersonDto> moreThan(){
-       return personConverter.listPersonToListPersonDto(personService.moreThan());
+   @GetMapping("more/{n}")
+   public List<PersonDto> moreThan(@PathVariable Integer n){
+       return personConverter.listPersonToListPersonDto(personService.moreThan(n));
    }
 
    @GetMapping("getAge/{age}")
@@ -46,7 +46,7 @@ public class PersonController {
 
 
 
-    @GetMapping("/personsDto")
+    @GetMapping("personsDto")
     public List<PersonDto> getPersonsDto(){
         return personConverter.listPersonToListPersonDto(personService.getPersons());
     }

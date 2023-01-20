@@ -9,25 +9,25 @@ import task13_14_15.service.dto.PersonDto;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "person")
+@RequestMapping(path = "person/")
 @RequiredArgsConstructor
 public class PersonController {
 
     private final PersonService personService;
 
-    @PostMapping("/add")
+    @PostMapping("add")
     public String addPerson(@RequestBody Person person) {
         personService.addPerson(person);
         return "This Person is added";
     }
 
-    @PostMapping("/addPersons")
+    @PostMapping("addPersons")
     public String addPersons(@RequestBody List<Person> personList) {
         personService.addPersons(personList);
         return "This personList is added";
     }
 
-    @GetMapping("/persons")
+    @GetMapping("persons")
     public List<PersonDto> getPersons() {
         return personService.getPersons();
     }
@@ -37,8 +37,13 @@ public class PersonController {
         return personService.getPersonDtoNameAge(name, age);
     }
 
-    @GetMapping("/age/{age}")
+    @GetMapping("age/{age}")
     public List<PersonDto> getAge(@PathVariable Integer age) {
         return personService.getPersonByAge(age);
+    }
+
+    @GetMapping("more/{n}")
+    public List<PersonDto> getMore(@PathVariable Integer n){
+        return personService.moreThan(n);
     }
 }

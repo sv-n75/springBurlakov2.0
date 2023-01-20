@@ -17,6 +17,10 @@ public class PersonConverter {
 
 
     public PersonDto convertToDto(Person person) {
+        if (person.getDepartment() == null)  return new PersonDto(person.getSurname(), person.getName(), person.getPatronymic(),
+                person.getAge(),
+                passportConverter.convertPassportToPassportDTO(person.getPersonPassport()),
+                "none department");
         return new PersonDto(person.getSurname(), person.getName(), person.getPatronymic(),
                 person.getAge(),
                 passportConverter.convertPassportToPassportDTO(person.getPersonPassport()),

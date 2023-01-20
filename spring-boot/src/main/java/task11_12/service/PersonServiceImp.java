@@ -20,11 +20,8 @@ public class PersonServiceImp implements PersonService{
     @Override
     public Person getPersonByNameAndAge(String name, Integer age) {
 
-        Person person =  personRepository.findFirstByNameAndAge(name, age);
-        if (person == null){
-            throw new PersonException(PERSON_NOT_FOUND.getMessage());
-        }
-        return person;
+        return personRepository.findFirstByNameAndAge(name, age)
+                .orElseThrow(()->new PersonException(PERSON_NOT_FOUND.getMessage()));
 
     }
 
@@ -33,6 +30,7 @@ public class PersonServiceImp implements PersonService{
         List<Person> persons =  personRepository.findByAge(age);
         if (persons.isEmpty()){
             throw new PersonException(PERSON_NOT_FOUND.getMessage());
+
         }
         return persons;
     }
@@ -48,8 +46,8 @@ public class PersonServiceImp implements PersonService{
     }
 
     @Override
-    public List<Person> moreThan() {
-        List<Person> personList = personRepository.findMoreThan();
+    public List<Person> moreThan(Integer n) {
+        List<Person> personList = personRepository.findMoreThan(n);
         if (personList.isEmpty()){
             throw new PersonException(PERSON_NOT_FOUND.getMessage());
         }

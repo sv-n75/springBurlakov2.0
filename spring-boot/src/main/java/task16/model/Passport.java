@@ -20,7 +20,7 @@ public class Passport {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "passport_id")
     private Long Id;
 

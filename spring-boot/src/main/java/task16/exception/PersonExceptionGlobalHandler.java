@@ -10,7 +10,7 @@ public class PersonExceptionGlobalHandler {
 
     @ExceptionHandler(value = {PersonDepartmentException.class})
     public ResponseEntity<Object> handlerRequest(PersonDepartmentException e) {
-        return new ResponseEntity<>(PersonDepartmentExceptionEnum.PERSON_OR_DEPARTMENT_NOT_FOUND.getMessage(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(value = {Exception.class})

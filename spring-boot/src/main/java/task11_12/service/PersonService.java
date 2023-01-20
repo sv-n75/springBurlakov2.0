@@ -15,7 +15,7 @@ public interface PersonService {
 
     Person addPerson(Person person);
 
-    List<Person> moreThan();
+    List<Person> moreThan(Integer n);
 
 
 }

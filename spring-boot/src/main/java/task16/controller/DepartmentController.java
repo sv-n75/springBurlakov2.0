@@ -9,41 +9,41 @@ import task16.service.dto.DepartmentDto;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "person")
+@RequestMapping(path = "person/")
 @RequiredArgsConstructor
 public class DepartmentController {
 
     private final DepartmentService departmentService;
 
-    @GetMapping("/departments")
+    @GetMapping("departments")
     public List<DepartmentDto> getDepartments() {
         return departmentService.getDepartments();
     }
 
-    @GetMapping("/idDep/{id}")
+    @GetMapping("idDep/{id}")
     public DepartmentDto getDepartmentDto(@PathVariable Long id) {
         return departmentService.getDepartmentDto(id);
     }
 
-    @PostMapping("/addDep")
+    @PostMapping("addDep")
     public String addDepartment(@RequestBody Department department) {
         departmentService.addDepartment(department);
         return "This department is added";
     }
 
-    @PutMapping("/addPD")
+    @PutMapping("addPD")
     public String addPersonToDepartment(@RequestParam Long idP, @RequestParam Long idDep) {
         departmentService.addPersonToDepartment(idP, idDep);
         return "Person is added into this department";
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("{id}")
     public String deletePerson(@PathVariable Long id) {
         departmentService.deletePerson(id);
         return "Person is deleted";
     }
 
-    @DeleteMapping("/deleteDep/{id}")
+    @DeleteMapping("deleteDep/{id}")
     public String deleteDepartment(@PathVariable Long id) {
         departmentService.deleteDepartment(id);
         return "Department is deleted";
