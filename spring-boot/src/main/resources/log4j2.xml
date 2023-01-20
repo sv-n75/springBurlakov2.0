@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="error">
+    <Appenders>
+
+        <Console name="LogToConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <File name="LogToFileInfo" fileName="logs/appInfo.log" append="false">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
+
+        <File name="LogToFileError" fileName="logs/appError.log">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
+
+        <File name="LogToFileScheduler" fileName="logs/appScheduler.log" append="false">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
+
+
+
+    </Appenders>
+
+    <Loggers>
+
+        <Logger name="task17_21.controller" level="info" additivity="false">
+            <AppenderRef ref="LogToConsole" level="info"/>
+            <AppenderRef ref="LogToFileInfo" level="info"/>
+        </Logger>
+
+        <Logger name="task17_21.scheduler" level="info" additivity="false">
+            <AppenderRef ref="LogToConsole" level="info"/>
+            <AppenderRef ref="LogToFileScheduler" level="info"/>
+        </Logger>
+
+        <Logger name="task17_21" level="error" additivity="false">
+            <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="LogToFileError" level="error"/>
+        </Logger>
+
+
+        <Root level="info">
+            <AppenderRef ref="LogToConsole"/>
+        </Root>
+    </Loggers>
+</Configuration>
