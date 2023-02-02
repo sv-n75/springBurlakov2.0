@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 import task17_21.email.SendEmail;
 
 import javax.validation.ConstraintViolation;
@@ -26,6 +25,8 @@ public class PersonExceptionGlobalHandler {
 
     @ExceptionHandler(value = {PersonDepartmentException.class})
     public ResponseEntity<Object> handlerRequest(PersonDepartmentException e) {
+        log.error(e.getMessage());
+        sendEmail.sendEmail(e.getMessage());
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 
@@ -38,11 +39,8 @@ public class PersonExceptionGlobalHandler {
 
     }
 
-    @ResponseBody
-    @ExceptionHandler(ConstraintViolationException.class)
-    public ValidationErrorResponse onConstraintValidationException(
-            ConstraintViolationException e
-    ) {
+    @ExceptionHandler(value = {ConstraintViolationException.class})
+    public ResponseEntity<Object> onConstraintValidationException(ConstraintViolationException e) {
         final List<Violation> violations = e.getConstraintViolations().stream()
                 .map(
                         violation -> new Violation(
@@ -51,6 +49,7 @@ public class PersonExceptionGlobalHandler {
                         )
                 )
                 .collect(Collectors.toList());
-        return new ValidationErrorResponse(violations);
+
+        return new ResponseEntity<>(violations, HttpStatus.BAD_REQUEST);
     }
 }

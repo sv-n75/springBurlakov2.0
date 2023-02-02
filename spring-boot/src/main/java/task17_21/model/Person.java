@@ -16,6 +16,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 
@@ -27,13 +28,14 @@ import java.time.LocalDate;
 public class Person {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     private String surname;
 
 
-   @NotBlank(message = "name should  not be empty" )
+    @NotBlank(message = "name should  not be empty")
+    @NotNull(message = "name should  not be empty")
     private String name;
 
     private String patronymic;

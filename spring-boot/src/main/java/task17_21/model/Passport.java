@@ -27,7 +27,7 @@ public class Passport {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "passport_id")
     private Long Id;
 

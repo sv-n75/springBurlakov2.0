@@ -1,0 +1,88 @@
+databaseChangeLog:
+  - changeSet:
+      id: addColumn-task10
+      author: ns
+      changes:
+        - sql:
+            sql: ALTER TABLE personLB_task6
+              ADD COLUMN surname varchar(50) AFTER id,
+              ADD COLUMN patronymic varchar(50) AFTER name,
+              ADD COLUMN creation_date date,
+              ADD COLUMN password varchar(50),
+              ADD COLUMN address varchar(50),
+              ADD COLUMN mobile varchar(20),
+              ADD COLUMN passport varchar(10);
+
+              ALTER TABLE personLB_task6
+              RENAME COLUMN year TO age;
+
+              UPDATE personLB_task6 SET
+              surname = 'Ivanov',
+              patronymic = 'B', creation_date = '2023-02-02', password = '1010',
+              address = 'street 2', mobile = '10000002',
+              passport  = '1000000000'
+              WHERE id = 1;
+
+              UPDATE personLB_task6 SET
+              surname = 'Petrov',
+              patronymic = 'C', creation_date = '2023-02-02', password = '1009',
+              address = 'street 3', mobile = '10000003',
+              passport  = '1000000001'
+              WHERE id = 2;
+
+              UPDATE personLB_task6 SET
+              surname = 'Sidirov',
+              patronymic = 'D', creation_date = '2023-02-02', password = '1001',
+              address = 'street 4', mobile = '10000004',
+              passport  = '1000000002'
+              WHERE id = 3;
+
+              UPDATE personLB_task6 SET
+              surname = 'Belyi',
+              patronymic = 'E', creation_date = '2023-02-02', password = '1002',
+              address = 'street 5', mobile = '10000005',
+              passport  = '1000000003'
+              WHERE id = 4;
+
+              UPDATE personLB_task6 SET
+              surname = 'Seryi',
+              patronymic = 'F', creation_date = '2023-02-02', password = '1003',
+              address = 'street 6', mobile = '10000006',
+              passport  = '1000000004'
+              WHERE id = 5;
+
+              UPDATE personLB_task6 SET
+              surname = 'Ivanov',
+              patronymic = 'G', creation_date = '2023-02-02', password = '1004',
+              address = 'street 7', mobile = '10000007',
+              passport  = '1000000005'
+              WHERE id = 6;
+
+              UPDATE personLB_task6 SET
+              surname = 'Jukovv',
+              patronymic = 'H', creation_date = '2023-02-02', password = '1005',
+              address = 'street 8', mobile = '10000008',
+              passport  = '1000000006'
+              WHERE id = 7;
+
+              UPDATE personLB_task6 SET
+              surname = 'Pukin',
+              patronymic = 'E', creation_date = '2023-02-02', password = '1006',
+              address = 'street 9', mobile = '10000009',
+              passport  = '1000000007'
+              WHERE id = 8;
+
+              UPDATE personLB_task6 SET
+              surname = 'Medvedev',
+              patronymic = 'I', creation_date = '2023-02-02', password = '1007',
+              address = 'street 10', mobile = '10000010',
+              passport  = '1000000008'
+              WHERE id = 9;
+
+              UPDATE personLB_task6 SET
+              surname = 'Ivanov',
+              patronymic = 'K', creation_date = '2023-02-02', password = '1008',
+              address = 'street 11', mobile = '10000011',
+              passport  = '1000000009'
+              WHERE id = 10;
+

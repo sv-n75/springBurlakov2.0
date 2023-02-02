@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-person-6
+      author: ns
+      changes:
+        - sql:
+            sql: CREATE TABLE personLB_task6 (id int primary key auto_increment, name varchar(50), year int);
+              INSERT INTO personLB_task6 (name, year) VALUES ('A', 10), ('B', 11), ('C', 12), ('D', 13), ('E', 14),
+              ('A', 14), ('B', 13), ('C', 12), ('D', 11), ('E', 10)
+
+

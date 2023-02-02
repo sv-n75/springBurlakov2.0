@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-department
+      author: ns
+      changes:
+        - sql:
+            sql: CREATE TABLE departmentLB_task16 (id int primary key auto_increment, name varchar(50));
+
+              INSERT INTO departmentLB_task16 (name) VALUES ('HH'), ('IT'), ('PR');
+              ALTER TABLE personLB_task6 ADD COLUMN department_id int;
+              UPDATE personLB_task6 SET department_id = 1  WHERE id <= 4;
+              UPDATE personLB_task6 SET department_id = 2  WHERE id BETWEEN 5 AND 8;
+              UPDATE personLB_task6 SET department_id = 3  WHERE id BETWEEN 9 AND 10;
+
+              ALTER TABLE personLB_task6 ADD FOREIGN KEY(department_id)
+              REFERENCES departmentLB_task16(id) ON DELETE SET NULL;

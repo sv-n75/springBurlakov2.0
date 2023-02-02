@@ -31,16 +31,12 @@ public class PersonServiceImpl implements PersonService {
     public PersonDto getPersonDtoNameAge(String name, Integer age) {
         List<Person> personList = personRepository.findByName(name);
         if (personList.isEmpty()) {
-            log.error(PersonDepartmentExceptionEnum.PERSON_NOT_FOUND.getMessage());
-            sendEmail.sendEmail(PersonDepartmentExceptionEnum.PERSON_NOT_FOUND.getMessage());
             throw new PersonDepartmentException(PersonDepartmentExceptionEnum.PERSON_NOT_FOUND.getMessage());
         }
         Person person = personList.stream().filter((p) -> (LocalDate.now().getYear() - p.getBirthday().getYear()) == age)
                 .findFirst().orElseThrow(() ->
                 {
                     String message = PersonDepartmentExceptionEnum.PERSON_NOT_FOUND.getMessage();
-                    log.error(message);
-                    sendEmail.sendEmail(message);
                     throw new PersonDepartmentException(message);
                 });
 
@@ -52,8 +48,6 @@ public class PersonServiceImpl implements PersonService {
         return personConverter.convertToDto(personRepository.findById(id).orElseThrow(() ->
         {
             String message = PersonDepartmentExceptionEnum.PERSON_NOT_FOUND.getMessage();
-            log.error(message);
-            sendEmail.sendEmail(message);
             throw new PersonDepartmentException(message);
         }));
     }
@@ -68,8 +62,6 @@ public class PersonServiceImpl implements PersonService {
         if (people.isEmpty())
         {
             String message = PersonDepartmentExceptionEnum.PERSON_NOT_FOUND.getMessage();
-            log.error(message);
-            sendEmail.sendEmail(message);
             throw new PersonDepartmentException(message);
         }
 
@@ -97,7 +89,6 @@ public class PersonServiceImpl implements PersonService {
     public List<PersonDto> moreThan(Integer n) {
         List<Person> personList = personRepository.findMoreThan(n);
         if (personList.isEmpty()) {
-            sendEmail.sendEmail(PersonDepartmentExceptionEnum.PERSON_NOT_FOUND.getMessage());
             throw new PersonDepartmentException(PersonDepartmentExceptionEnum.PERSON_NOT_FOUND.getMessage());
         }
         return personConverter.convertToDtList(personList);
@@ -108,8 +99,6 @@ public class PersonServiceImpl implements PersonService {
         return personRepository.findById(id).orElseThrow(() ->
         {
             String message = PersonDepartmentExceptionEnum.PERSON_NOT_FOUND.getMessage();
-            log.error(message);
-            sendEmail.sendEmail(message);
             throw new PersonDepartmentException(message);
         });
     }
@@ -123,7 +112,5 @@ public class PersonServiceImpl implements PersonService {
 
         return personConverter.convertToDtList(people).toString();
     }
-
-
 }
 

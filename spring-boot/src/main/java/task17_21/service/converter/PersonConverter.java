@@ -18,10 +18,10 @@ public class PersonConverter {
 
 
     public PersonDto convertToDto(Person person) {
-        if (person.getDepartment() == null)  return new PersonDto(person.getSurname(), person.getName(), person.getPatronymic(),
-                (LocalDate.now().getYear() - person.getBirthday().getYear()),
-                passportConverter.convertPassportToPassportDTO(person.getPersonPassport()),
-                "none department");
+        if (person.getDepartment() == null)
+            return new PersonDto(person.getSurname(), person.getName(), person.getPatronymic(),
+                    (LocalDate.now().getYear() - person.getBirthday().getYear()),
+                    passportConverter.convertPassportToPassportDTO(person.getPersonPassport()), null);
         return new PersonDto(person.getSurname(), person.getName(), person.getPatronymic(),
                 (LocalDate.now().getYear() - person.getBirthday().getYear()),
                 passportConverter.convertPassportToPassportDTO(person.getPersonPassport()),

@@ -45,8 +45,6 @@ public class DepartmentServiceImpl implements DepartmentService {
         Person person = personRepository.findById(idP).orElseThrow(() ->
         {
             String message = PersonDepartmentExceptionEnum.PERSON_NOT_FOUND.getMessage();
-            log.error(message);
-            sendEmail.sendEmail(message);
             throw new PersonDepartmentException(message);
         });
 
@@ -55,8 +53,6 @@ public class DepartmentServiceImpl implements DepartmentService {
                 .orElseThrow(() ->
                 {
                     String message = PersonDepartmentExceptionEnum.DEPARTMENT_NOT_FOUND.getMessage();
-                    log.error(message);
-                    sendEmail.sendEmail(message);
                     throw new PersonDepartmentException(message);
                 });
 
@@ -71,8 +67,6 @@ public class DepartmentServiceImpl implements DepartmentService {
         Person person = personRepository.findById(id).orElseThrow(() ->
         {
             String message = PersonDepartmentExceptionEnum.PERSON_NOT_FOUND.getMessage();
-            log.error(message);
-            sendEmail.sendEmail(message);
             throw new PersonDepartmentException(message);
         });
 
@@ -84,8 +78,6 @@ public class DepartmentServiceImpl implements DepartmentService {
         Department dep = departmentRepository.findById(id).orElseThrow(() ->
         {
             String message = PersonDepartmentExceptionEnum.DEPARTMENT_NOT_FOUND.getMessage();
-            log.error(message);
-            sendEmail.sendEmail(message);
             throw new PersonDepartmentException(message);
         });
         departmentRepository.delete(dep);
@@ -96,8 +88,6 @@ public class DepartmentServiceImpl implements DepartmentService {
         Department dep = departmentRepository.findById(id).orElseThrow(() ->
         {
             String message = PersonDepartmentExceptionEnum.DEPARTMENT_NOT_FOUND.getMessage();
-            log.error(message);
-            sendEmail.sendEmail(message);
             throw new PersonDepartmentException(message);
         });
         return departmentConverter.departmentToDto(dep);
@@ -109,8 +99,6 @@ public class DepartmentServiceImpl implements DepartmentService {
                 .orElseThrow(() ->
                 {
                     String message = PersonDepartmentExceptionEnum.DEPARTMENT_NOT_FOUND.getMessage();
-                    log.error(message);
-                    sendEmail.sendEmail(message);
                     throw new PersonDepartmentException(message);
                 });
     }

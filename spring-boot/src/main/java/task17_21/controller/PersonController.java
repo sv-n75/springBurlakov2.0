@@ -3,7 +3,6 @@ package task17_21.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,8 +25,7 @@ public class PersonController {
     private final PersonService personService;
 
     @PostMapping("add")
-    public String addPerson(@RequestBody Person person, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) return "person invalid";
+    public String addPerson(@RequestBody Person person) {
         personService.addPerson(person);
         return "VALID";
     }

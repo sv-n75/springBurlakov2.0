@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: change-table-person-task14
+      author: ns
+      changes:
+        - sql:
+            sql: ALTER TABLE personLB_task6 CHANGE passport passport_id int;
+
+              UPDATE personLB_task6 SET passport_id = 1 WHERE id = 1;
+              UPDATE personLB_task6 SET passport_id = 2 WHERE id = 2;
+              UPDATE personLB_task6 SET passport_id = 3 WHERE id = 3;
+              UPDATE personLB_task6 SET passport_id = 4 WHERE id = 4;
+              UPDATE personLB_task6 SET passport_id = 5 WHERE id = 5;
+              UPDATE personLB_task6 SET passport_id = 6 WHERE id = 6;
+              UPDATE personLB_task6 SET passport_id = 7 WHERE id = 7;
+              UPDATE personLB_task6 SET passport_id = 8 WHERE id = 8;
+              UPDATE personLB_task6 SET passport_id = 9 WHERE id = 9;
+              UPDATE personLB_task6 SET passport_id = 10 WHERE id = 10;
+
+              ALTER TABLE personLB_task6 ADD FOREIGN KEY(passport_id)
+              REFERENCES passportLB_task13(id) ON DELETE SET NULL;
+
+
